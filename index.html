@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 text-gray-900 min-h-screen ">
+    <header>
+        <nav class="px-4 py-5 shadow-md flex justify-between">
+            <span class="text-grat-950 text-xl font-bold">Countries</span>
+        <li class="list-none hover:underline transition duration-300 text-lg font-semibold"><a href="#home">Home</a></li>
+        </nav>
+    </header>
+
+    <main class="py-20 px-10">
+        <!-- Search bar and Filter Elements -->
+            <div id="search">
+                    <form action="/search-results" method="GET" class="flex justify-between p-4">
+                        <input type="search" class="bg-white outline-none text-black focus:border-blue-100 focus:ring-2 focus:ring-blue-800 rounded-xl px-4 py-3 w-[450px] shadow-md transition-all duration-300" name="q" placeholder="Search for a country ....." aria-label="Search through site">
+                        <select name="region" id="region-filter" class="bg-white text-black border-blue-700 rounded-xl px-4 py-3 w-[170px] shadow-md">
+                            <option value="">Filter By Region</option>
+                            <option value="">Africa</option>
+                            <option value="">Asia</option>
+                            <option value="">Americas</option>
+                            <option value="">Oceania</option>
+                            <option value="">Europe</option>
+                        </select>
+                    </form>
+                </div>
+        
+                <!-- Loading State -->
+        <div id="loading" class="text-center py-20 text-gray-400 text-lg">
+         Loading Country......
+        </div>
+
+        <!-- Error State -->
+         <div id="error-msg" class="hidden bg-white text-red-600 border-red-200 rounded-lg p-4 mb-6"></div>
+
+         <!-- Country Grid -->
+          <div id="country-grid" class="grid-cols-2 sm-grid-cols-3 md-grid-cols-4 lg-grid-cols-5 gap-4">
+        <!-- Cards placed here using JavaScript -->
+          </div>
+
+          <!-- Pagination -->
+           <div id="pagiantion" class="hidden flex justify-center gap-4 mt-10">
+               <button id="next-btn" class="px-2 py-4 bg-white border border-gray-300 rounded-lg text-sm font-medium hover:bg-gray-50 disabled:opacity-40 disabled:cursor-not-allowed disabled">
+                Previous
+               </button>
+            <button id="next-btn" class="px-2 py-4 bg-blue-600 text-white rounded-lg text-sm font-medium hover:bg-blue-800 ">
+             Next
+            </button>
+
+           </div>
+
+    </main>
+</body>
+<script src="js/index.js"></script>
+</html>
