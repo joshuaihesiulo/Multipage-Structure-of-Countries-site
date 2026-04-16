@@ -6,9 +6,12 @@ const pagination = document.getElementById("pagination");
 const prevBtn    = document.getElementById("prev-btn");
 const nextBtn    = document.getElementById("next-btn");
 const pageInfo   = document.getElementById("page-info");
+const searchInput  = document.getElementById("search-input");
+const regionFilter = document.getElementById("region-filter");
 
 // ── State ──
 let total   = 0;
+let allCountires= [];
 
 // ── Initialise ──
 fetchList();
@@ -26,6 +29,7 @@ async function fetchList() {
     if (!res.ok) throw new Error(`Failed to load list (${res.status})`);
 
     const data = await res.json();
+    allCountries= data
     total = data.length;
 
     renderGrid(data);
@@ -81,10 +85,10 @@ function renderGrid(countryList) {
     card.appendChild(capital);
     grid.appendChild(card);
 
-    // Clicking a card opens the modal with this Pokemon's data
 }
 )}
 
+// Loading State
 function showLoading(isLoading) {
     if (isLoading) {
         loading.classList.remove("hidden");
@@ -93,6 +97,7 @@ function showLoading(isLoading) {
     }
 }
 
+// Show Error
 function clearError() {
     errorMsg.classList.add("hidden");
     errorMsg.textContent = "";
@@ -102,3 +107,30 @@ function showError(message) {
     errorMsg.classList.remove("hidden");
     errorMsg.textContent = message;
 }
+
+
+// Filters Countries by searching
+function applyFilters() {
+  const term   = searchInput.value.toLowerCase().trim();
+  const region = regionFilter.value;
+
+// Retrieves the country's region and checks if it matches a region and renders the data partainig only to that region.
+  const filtered = allCountries.filter(country => {
+    const matchesName   = country.name.common.toLowerCase().includes(term);
+    const matchesRegion = region === "" || country.region === region;
+    return matchesName && matchesRegion;
+  });
+
+  console.log(country.region)
+
+  renderGrid(filtered);
+}
+
+// Activates the rendering when an input is amde on the search-bar and also when the region dropdown is changed.
+
+searchInput.addEventListener("input", applyFilters);
+regionFilter.addEventListener("change", applyFilters);
+
+document.querySelector("form").addEventListener("submit", e => {
+  e.preventDefault();
+});
