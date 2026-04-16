@@ -1,5 +1,5 @@
 // ── DOM references ──
-const grid       = document.getElementById("country-grid");
+const grid       = document.getElementById("country");
 const loading    = document.getElementById("loading");
 const errorMsg   = document.getElementById("error-msg");
 const pagination = document.getElementById("pagination");
@@ -29,8 +29,6 @@ async function fetchList() {
     total = data.length;
 
     renderGrid(data);
-    updatePagination();
-
   } catch (err) {
     showError("Could not load Pokemon list. Please check your connection.");
     console.error("[fetchList]", err.message);
