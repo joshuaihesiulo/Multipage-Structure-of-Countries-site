@@ -49,7 +49,8 @@ function renderGrid(countryList) {
     // Extract ID from the URL — no second API call needed
     const sprite = country.flags.png;
 
-    const card = document.createElement("div");
+    const card = document.createElement("a");
+    card.href = `country.html?code=${country.cca3}`;
     card.className = [
       "bg-white rounded-xl p-4 text-center shadow-sm",
       "border border-gray-100 cursor-pointer",
